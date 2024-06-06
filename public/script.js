@@ -40,6 +40,14 @@ function addMessageToChat(sender, message) {
     messagesContainer.appendChild(messageElement);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
+function adduserMessageToChat(sender, message) {
+    const messagesContainer = document.getElementById('messages');
+    const messageElement = document.createElement('div');
+    messageElement.className = 'message_us';
+    messageElement.textContent = `${sender}: ${message}`;
+    messagesContainer.appendChild(messageElement);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
 
 async function fetchMessages() {
     try {
@@ -47,7 +55,7 @@ async function fetchMessages() {
         if (response.ok) {
             const data = await response.json();
             if (data && data.message) {
-                addMessageToChat(data.sender, data.message);
+                adduserMessageToChat(data.sender, data.message);
             }
         } else {
             console.error('Failed to fetch messages:', response.statusText);
@@ -64,7 +72,7 @@ function toggleTheme() {
     const themeToggle = document.getElementById('theme-toggle');
     if (body.classList.contains('light-mode')) {
         body.classList.replace('light-mode', 'dark-mode');
-        themeToggle.textContent = 'Switch to Light Mode';
+        themeToggle.innerText = 'Switch to white Mode';
     } else {
         body.classList.replace('dark-mode', 'light-mode');
         themeToggle.textContent = 'Switch to Dark Mode';

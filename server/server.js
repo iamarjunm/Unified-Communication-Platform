@@ -22,7 +22,6 @@ bot.on('text', (ctx) => {
         sender: 'Telegram User',
         message: ctx.message.text
     };
-    ctx.reply(`You said: ${ctx.message.text}`);
 });
 
 bot.launch();
